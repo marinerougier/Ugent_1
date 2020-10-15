@@ -180,17 +180,6 @@ DESCRIPTION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     },
   };
 
-  /* PREVIEW CIS */
-  var previewstim = {
-    timeline_variables: FaceStims,
-    choices: jsPsych.NO_KEYS,
-    trial_duration: 800,
-    post_trial_gap: 100,
-    timeline: [{
-      type: 'html-keyboard-response',
-      stimulus: function() {return jsPsych.timelineVariable('imgHtml', true)},
-    }]
-  };
 
   /* JUDGMENTS INSTRUCTIONS */
   var jugmentInst_stim = {
