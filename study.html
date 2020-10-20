@@ -15,6 +15,7 @@ DESCRIPTION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   <script src="jspsych-6.0.3/plugins/jspsych-survey-text.js"></script>
   <script src="jspsych-6.0.3/plugins/jspsych-survey-likert.js"></script>
   <script src="jspsych-6.0.3/plugins/jspsych-survey-multi-choice.js"></script>
+  <script src="jspsych-6.0.3/plugins/jspsych-external-html.js"></script>
   <script src="js/jspsych-html-slider-response_required.js"></script>
   <script src="js/jquery.min.js"></script>
   <script src="js/lodash.min.js"></script>
@@ -124,7 +125,7 @@ DESCRIPTION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   };
 
   /* CONSENT */
-  var consent = {
+  var consent_old = {
     type: 'html-button-response',
     stimulus: function() {
         html = "";
@@ -142,9 +143,38 @@ DESCRIPTION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     choices: ["I give my informed consent"],
   };
 
+//var list = function(elem) {(document.querySelectorAll("#info, #volunt, #anony, #end, #consqc, #summ")};
+
+var check_consent = function(elem) {
+  if (document.getElementById('info').checked 
+    & document.getElementById('volunt').checked 
+    & document.getElementById('anony').checked 
+    & document.getElementById('end').checked 
+    & document.getElementById('consqc').checked 
+    & document.getElementById('summ').checked 
+    & document.getElementById('participate').checked ) {
+    return true;
+  }
+  else {
+    alert("If you wish to participate, you must check all the boxes.");
+    return false;
+  }
+  return false;
+};
+
+
+  // declare the block.
+var consent = {
+  type:'external-html',
+  url: "https://marinerougier.github.io/Ugent_1/external_page_consent.html",
+  cont_btn: "start",
+  check_fn: check_consent
+};
+
   /* General INSTRUCTIONS */
   var Instr_gene1 = {
     type: "html-keyboard-response",
+    post_trial_gap: 300,
     choices: [32],
     stimulus: function() {
       var html = "";
@@ -164,6 +194,7 @@ DESCRIPTION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   var Instr_gene2 = {
     type: "html-keyboard-response",
+    post_trial_gap: 300,
     choices: [32],
     stimulus: function() {
       var html = "";
@@ -178,6 +209,17 @@ DESCRIPTION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     },
   };
 
+  /* PREVIEW CIS */
+  var previewstim = {
+    timeline_variables: FaceStims,
+    choices: jsPsych.NO_KEYS,
+    trial_duration: 800,
+    post_trial_gap: 100,
+    timeline: [{
+      type: 'html-keyboard-response',
+      stimulus: function() {return jsPsych.timelineVariable('imgHtml', true)},
+    }]
+  };
 
   /* JUDGMENTS INSTRUCTIONS */
   var jugmentInst_stim = {
@@ -490,21 +532,16 @@ DESCRIPTION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   /* DEBRIEF */
   var debrief = [];
   debrief += "<h1>End of the study</h1>";
-  debrief += "<p class='justify'>Thank you for your participation! First of all, you should know that "
-  debrief += "the aim of this study was not to investigate your perception accuracy--which is not a real ability. "
-  debrief += "Instead, our aim is to test whether your judgment ";
-  debrief += "of other persons depends on their physical attractiveness.</br></br> Indeed, individuals tend to attribute many "
-  debrief += "qualities to attractive persons (e.g., because a person is attractive, people tend to think that s/he is also trustworthy). "
-  debrief += "These, however, are errors of judgments because very often these deductions are not true. Our goal is to test if we can find "
-  debrief += "a similar effect in the present study. </br></br>"
+  debrief += "<p class='justify'>Thank you for your participation! The aim of this study was to investigate whether your judgment ";
+  debrief += "of people depends on their physical attractiveness.</br></br> "
   debrief += "You can copy this code on Prolific: <b>XXX</b> ";
   debrief += "or you can click on the following link to validate your participation:</p>";
   debrief += "<a href='https://app.prolific.ac/submissions/complete?cc=XXX' target='_blank'>click here</a>";
 
 
   // TIMELINE ----------------------------------------------------------------------------------------------------------
-  timeline.push(activeFullscreen);
   timeline.push(consent);
+  timeline.push(activeFullscreen);
   timeline.push(Instr_gene1);
   timeline.push(Instr_gene2);
   timeline.push(jugmentInst_stim);
