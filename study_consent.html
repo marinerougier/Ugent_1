@@ -143,9 +143,10 @@ DESCRIPTION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     choices: ["I give my informed consent"],
   };
 
+//var list = function(elem) {(document.querySelectorAll("#info, #volunt, #anony, #end, #consqc, #summ")};
 
 var check_consent = function(elem) {
-  if (document.getElementById('info'|'volunt').checked) {
+  if (document.getElementById('info').checked & document.getElementById('volunt').checked ) {
     return true;
   }
   else {
