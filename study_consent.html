@@ -146,7 +146,12 @@ DESCRIPTION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //var list = function(elem) {(document.querySelectorAll("#info, #volunt, #anony, #end, #consqc, #summ")};
 
 var check_consent = function(elem) {
-  if (document.getElementById('info').checked & document.getElementById('volunt').checked ) {
+  if (document.getElementById('info').checked 
+    & document.getElementById('volunt').checked 
+    & document.getElementById('anony').checked 
+    & document.getElementById('end').checked 
+    & document.getElementById('consqc').checked 
+    & document.getElementById('summ').checked ) {
     return true;
   }
   else {
