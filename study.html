@@ -238,6 +238,28 @@ var consent = {
     },
   };
 
+  /* Attractiveness INSTRUCTIONS */
+  var attractiveness_instr = {
+    type: "html-keyboard-response",
+    post_trial_gap: 300,
+    choices: [32],
+    stimulus: function() {
+      var html = "";
+      html += "<h1>Study of accuracy in person perception</h1>";
+      html += "<p class='justify'>Now, we will ask you to rate the faces that you saw on their <b>physical attractiveness</b>.<br><br> ";
+      html += "<b>Again, remember that we are not interested in your tact, politeness, or other ";
+      html += "factors that are usually important in everyday life situations. </br>";
+      html += "It is extremely important that you try to answer <b> as honestly and as spontaneously as possible.</b></br></br>";
+      html += "<p></br>Press <span class='light-keys'><kbd>space</kbd></span> to begin</p>";
+      return html;
+    },
+      on_load: function() {
+          window.scrollTo(0, 0);
+          $(".jspsych-content").css("margin-top", "200px");
+          $(".jspsych-content").css("max-width", "90%");
+        },
+  };
+
   // Judgments
 
   // Traits from the meta-analysis of Eagly et al. (1991):
@@ -322,7 +344,7 @@ var consent = {
   var scalePrudish = ["0</br>Not prudish at all", "1", "2", "3", "4", "5</br>Totally prudish"];
   var scaleModest = ["0</br>Not modest at all", "1", "2", "3", "4", "5</br>Totally modest"];
 
-  var judgments_subgroup = [];
+  var judgments_dimensions = [];
   FaceStims.map(function(ciImg){
     var likert_trial = {
         type: 'survey-likert',
@@ -430,13 +452,45 @@ var consent = {
           data.pompous     = parsed_response.Q39 * 10;
           data.prudish     = parsed_response.Q40 * 10;
           data.modest     = parsed_response.Q41 * 10;
-          data.ci              = ciImg.imgHtml;
+          data.facejudged              = ciImg.imgHtml;
         },
     };
-    judgments_subgroup.push(likert_trial);
+    judgments_dimensions.push(likert_trial);
   });
 
+var scaleAttractiveness = ["0</br>Not physically attractive at all", "1", "2", "3", "4", "5</br>Totally physically attractive"];
 
+  var judgments_attractiveness = [];
+  FaceStims.map(function(ciImg){
+    var likert_trial = {
+        type: 'survey-likert',
+        preamble: ciImg.imgHtml,
+        questions: [
+          {prompt: "", labels: scaleAttractiveness, required: true},
+        ],
+        randomize_question_order: true, /// !!!! does not work
+        button_label: 'Continue',
+        on_load: function() {
+          window.scrollTo(0, 0);
+          $(".jspsych-content").css("max-width", "100%");
+          $(".jspsych-content").css("margin-top", "380px");
+          $(".jspsych-survey-likert-statement").css("margin", "0px");
+          $(".jspsych-survey-likert-statement").css("padding", "0px");
+          $(".jspsych-survey-likert-opts").css("padding", "0 0 10px");
+          $("#jspsych-survey-likert-next").css("margin-top", "10px");
+          $("#jspsych-survey-likert-form").css("width", "800px");
+          $("li").css("width", "9%");
+        //   $("li:first-of-type").css("width", "110px");
+        //   $("li:last-of-type").css("width", "110px");
+        },
+        on_finish: function(data) {
+          var parsed_response  = JSON.parse(data.responses);
+          data.attractiveness    = parsed_response.Q0 * 10;
+          data.faceattract              = ciImg.imgHtml;
+        },
+    };
+    judgments_attractiveness.push(likert_trial);
+  });
 
   /* AGE */
   var age = {
@@ -448,6 +502,7 @@ var consent = {
       on_load: function() {
           window.scrollTo(0, 0);
           $(".jspsych-content").css("margin-top", "200px");
+          $(".jspsych-content").css("max-width", "90%");
         },
       loop_function: function(data){ 
         var age = data.values()[0].responses;
@@ -545,7 +600,9 @@ var consent = {
   timeline.push(Instr_gene1);
   timeline.push(Instr_gene2);
   timeline.push(jugmentInst_stim);
-  timeline.push(judgments_subgroup);
+  timeline.push(judgments_dimensions);
+  timeline.push(attractiveness_instr);
+  timeline.push(judgments_attractiveness);
   timeline.push(age);
   timeline.push(gender);
   timeline.push(language);
