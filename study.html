@@ -229,7 +229,8 @@ var consent = {
     stimulus: function() {
       var html = "";
       html += "<h1>Study of accuracy in person perception</h1>";
-      html += "<p class='justify'>Your specific task is to report several judgments on three persons.<br><br> ";
+      html += "<p class='justify'>Your specific task is to <b>report several judgments on 3 persons.</b> ";
+      html += "<p class='justify'>To do so, you will evaluate each person on <b>42 personality traits or personality outcomes. </b><br><br>";
       html += "<b>Given that this study is on person perception, we are not interested in your tact, politeness, or other ";
       html += "factors that are usually important in everyday life situations. </br>";
       html += "It is extremely important that you try to answer <b> as honestly and as spontaneously as possible.</b></br></br>";
@@ -246,7 +247,7 @@ var consent = {
     stimulus: function() {
       var html = "";
       html += "<h1>Study of accuracy in person perception</h1>";
-      html += "<p class='justify'>Now, we will ask you to rate the faces that you saw on their <b>physical attractiveness</b>.<br><br> ";
+      html += "<p class='justify'>Now, we will ask you to rate the three faces that you saw on their <b>physical attractiveness</b>.<br><br> ";
       html += "<b>Again, remember that we are not interested in your tact, politeness, or other ";
       html += "factors that are usually important in everyday life situations. </br>";
       html += "It is extremely important that you try to answer <b> as honestly and as spontaneously as possible.</b></br></br>";
@@ -342,7 +343,7 @@ var consent = {
   var scaleMaterialistic = ["0</br>Not materialistic at all", "1", "2", "3", "4", "5</br>Totally materialistic"];
   var scalePompous = ["0</br>Not pompous at all", "1", "2", "3", "4", "5</br>Totally pompous"];
   var scalePrudish = ["0</br>Not prudish at all", "1", "2", "3", "4", "5</br>Totally prudish"];
-  var scaleModest = ["0</br>Not modest at all", "1", "2", "3", "4", "5</br>Totally modest"];
+  var scaleBoastfull = ["0</br>Not boastfull at all", "1", "2", "3", "4", "5</br>Totally boastfull"];
 
   var judgments_dimensions = [];
   FaceStims.map(function(ciImg){
@@ -391,7 +392,7 @@ var consent = {
           {prompt: "", labels: scaleMaterialistic, required: true},
           {prompt: "", labels: scalePompous, required: true},
           {prompt: "", labels: scalePrudish, required: true},
-          {prompt: "", labels: scaleModest, required: true},
+          {prompt: "", labels: scaleBoastfull, required: true},
         ],
         randomize_question_order: true, /// !!!! does not work
         button_label: 'Continue',
@@ -451,14 +452,14 @@ var consent = {
           data.materialistic     = parsed_response.Q38 * 10;
           data.pompous     = parsed_response.Q39 * 10;
           data.prudish     = parsed_response.Q40 * 10;
-          data.modest     = parsed_response.Q41 * 10;
+          data.boastfull     = parsed_response.Q41 * 10;
           data.facejudged              = ciImg.imgHtml;
         },
     };
     judgments_dimensions.push(likert_trial);
   });
 
-var scaleAttractiveness = ["0</br>Not physically attractive at all", "1", "2", "3", "4", "5</br>Totally physically attractive"];
+var scaleAttractiveness = ["0</br>Extremely unattractive", "1", "2", "3", "4", "5</br>Extremely attractive"];
 
   var judgments_attractiveness = [];
   FaceStims.map(function(ciImg){
@@ -567,7 +568,7 @@ var scaleAttractiveness = ["0</br>Not physically attractive at all", "1", "2", "
   var comments = {
         timeline: [{
             type: 'survey-text',
-            questions: [{ prompt: 'Do you have any comments regarding this study? [Optional]', rows: 3, columns: 60 }],
+            questions: [{ prompt: 'Do you have comments regarding this study? [Optional]', rows: 3, columns: 60 }],
             button_label: "continue",
         }],
         on_finish: function (data) {
@@ -587,8 +588,29 @@ var scaleAttractiveness = ["0</br>Not physically attractive at all", "1", "2", "
   /* DEBRIEF */
   var debrief = [];
   debrief += "<h1>End of the study</h1>";
-  debrief += "<p class='justify'>Thank you for your participation! The aim of this study was to investigate whether your judgment ";
-  debrief += "of people depends on their physical attractiveness.</br></br> "
+  debrief += "<p class='justify'>Thank you for participating in this online experiment!<br><br>";
+  debrief += "In some experiments, we cannot tell people everything about the experiment at the beginning because their responses would not be ";
+  debrief += "natural. For example, if we told people what the point of the experiment was ahead of time, then some people might do whatever ";
+  debrief += "it is they think we want them to do, just to be helpful. Other people might do the exact opposite of what they think we want "; 
+  debrief += "them to do, just to show us that we can't figure them out. When people are trying to second-guess what the experiment is "; 
+  debrief += "really about, and they behave a certain way because of it, our results gets messed up. That's because they aren't behaving "; 
+  debrief += "like they naturally would in the real world. The whole point of this experiment is to find out how people would ";
+  debrief += "naturally behave.<br><br>";
+  debrief += "Now we'd like to explain what we were trying to learn about with this study. First of all, you should know that the aim of "; 
+  debrief += "this study was not to investigate your perception accuracy. Perception accuracy is not a real ability. Instead, our "; 
+  debrief += "aim was to test whether your judgment of the three persons you saw depended on their physical attractiveness. Indeed "; 
+  debrief += "individuals tend to attribute many positive qualities to attractive persons. For instance, when a person is attractive, "; 
+  debrief += "people tend to think that s/he is also trustworthy.<br><br>";
+  debrief += "Our goal is to test if we can find a similar effect (that is called the “attractiveness Halo effect”) in the present study "; 
+  debrief += "with our set of pictures and our set of personality traits/outcomes. Our hypothesis was thus that the positivity of "; 
+  debrief += "participants’ evaluations should increase as a function of the physical attractiveness of the faces. <br><br>";
+  debrief += "We would like to emphasize that there are no correct responses in this study: We were looking at people’s natural responses. ";
+  debrief += "We hope you understand that we couldn't tell you all of this before because it would have ruined our study. ";
+  debrief += "Again, your responses will be anonymous and will be analyzed as part of a group of responses.</br></br>";
+  debrief += "We hope this explanation was clear. If you want additional information, if you have any questions, or if you would like ";
+  debrief += "to withdraw consent and have your data excluded, do not hesitate to contact us via Prolific Academic. If you are "; 
+  debrief += "interested, you can also ask for the results of this experiment—be aware, however, that this could take several weeks "; 
+  debrief += "to gather all the data we need and to analyze them. <br><br>";
   debrief += "You can copy this code on Prolific: <b>XXX</b> ";
   debrief += "or you can click on the following link to validate your participation:</p>";
   debrief += "<a href='https://app.prolific.ac/submissions/complete?cc=XXX' target='_blank'>click here</a>";
