@@ -238,7 +238,7 @@ var consent = {
         },
   };
 
-  // Judgments
+  // Judgments on various dimensions
 
   // Social Desirability index (from Dion et al. 1972): 
   //The index consists of the following items: poised/awkward, modest/vain, strong/weak, interesting/boring, 
@@ -377,7 +377,7 @@ var consent = {
           {prompt: "", labels: scalePrudish, required: true},
           {prompt: "", labels: scaleBoastfull, required: true},
         ],
-        randomize_question_order: true, /// !!!! does not work
+        randomize_question_order: true, 
         button_label: 'Continue',
         on_load: function() {
           window.scrollTo(0, 0);
@@ -394,54 +394,56 @@ var consent = {
         },
         on_finish: function(data) {
           var parsed_response  = JSON.parse(data.responses);
-          data.sociable    = parsed_response.Q0 * 10;
-          data.funloving = parsed_response.Q1 * 10;
-          data.likable     = parsed_response.Q2 * 10;
-          data.popular     = parsed_response.Q3 * 10;
-          data.intelligent     = parsed_response.Q4 * 10;
-          data.skillful     = parsed_response.Q5 * 10;
-          data.rational     = parsed_response.Q6 * 10;
-          data.scientific     = parsed_response.Q7 * 10;
+          data.sociable      = parsed_response.Q0 * 10;
+          data.funloving     = parsed_response.Q1 * 10;
+          data.likable       = parsed_response.Q2 * 10;
+          data.popular       = parsed_response.Q3 * 10;
+          data.intelligent   = parsed_response.Q4 * 10;
+          data.skillful      = parsed_response.Q5 * 10;
+          data.rational      = parsed_response.Q6 * 10;
+          data.scientific    = parsed_response.Q7 * 10;
           data.ambitious     = parsed_response.Q8 * 10;
-          data.hardworking     = parsed_response.Q9 * 10;
-          data.grade     = parsed_response.Q10 * 10;
-          data.success    = parsed_response.Q11 * 10;
+          data.hardworking   = parsed_response.Q9 * 10;
+          data.grade         = parsed_response.Q10 * 10;
+          data.success       = parsed_response.Q11 * 10;
           data.sensitive     = parsed_response.Q12 * 10;
-          data.empathic     = parsed_response.Q13 * 10;
-          data.compassionate     = parsed_response.Q14 * 10;
-          data.generous     = parsed_response.Q15 * 10;
-          data.modest     = parsed_response.Q16 * 10;
-          data.egoistic     = parsed_response.Q17 * 10;
-          data.trustworthy     = parsed_response.Q18 * 10;
-          data.honest     = parsed_response.Q19 * 10;
-          data.faithful     = parsed_response.Q20 * 10;
-          data.normal     = parsed_response.Q21 * 10;
-          data.welladjusted     = parsed_response.Q22 * 10;
+          data.empathic      = parsed_response.Q13 * 10;
+          data.compassionate = parsed_response.Q14 * 10;
+          data.generous      = parsed_response.Q15 * 10;
+          data.modest        = parsed_response.Q16 * 10;
+          data.egoistic      = parsed_response.Q17 * 10;
+          data.trustworthy   = parsed_response.Q18 * 10;
+          data.honest        = parsed_response.Q19 * 10;
+          data.faithful      = parsed_response.Q20 * 10;
+          data.normal        = parsed_response.Q21 * 10;
+          data.welladjusted  = parsed_response.Q22 * 10;
           data.satisfied     = parsed_response.Q23 * 10;
-          data.happy     = parsed_response.Q24 * 10;
+          data.happy         = parsed_response.Q24 * 10;
           data.confident     = parsed_response.Q25 * 10;
-          data.selfregard     = parsed_response.Q26 * 10;
-          data.mature     = parsed_response.Q27 * 10;
-          data.healthy     = parsed_response.Q28 * 10;
-          data.strong     = parsed_response.Q29 * 10;
-          data.selfassertive     = parsed_response.Q30 * 10;
-          data.dominant     = parsed_response.Q31 * 10;
-          data.leader     = parsed_response.Q32 * 10;
-          data.vain     = parsed_response.Q33 * 10;
-          data.elitist     = parsed_response.Q34 * 10;
-          data.snobbish     = parsed_response.Q35 * 10;
-          data.shallow     = parsed_response.Q36 * 10;
-          data.humble     = parsed_response.Q37 * 10;
-          data.materialistic     = parsed_response.Q38 * 10;
-          data.pompous     = parsed_response.Q39 * 10;
-          data.prudish     = parsed_response.Q40 * 10;
+          data.selfregard    = parsed_response.Q26 * 10;
+          data.mature        = parsed_response.Q27 * 10;
+          data.healthy       = parsed_response.Q28 * 10;
+          data.strong        = parsed_response.Q29 * 10;
+          data.selfassertive = parsed_response.Q30 * 10;
+          data.dominant      = parsed_response.Q31 * 10;
+          data.leader        = parsed_response.Q32 * 10;
+          data.vain          = parsed_response.Q33 * 10;
+          data.elitist       = parsed_response.Q34 * 10;
+          data.snobbish      = parsed_response.Q35 * 10;
+          data.shallow       = parsed_response.Q36 * 10;
+          data.humble        = parsed_response.Q37 * 10;
+          data.materialistic = parsed_response.Q38 * 10;
+          data.pompous       = parsed_response.Q39 * 10;
+          data.prudish       = parsed_response.Q40 * 10;
           data.boastfull     = parsed_response.Q41 * 10;
-          data.facejudged              = ciImg.imgHtml;
+          data.facejudged    = ciImg.imgHtml;
         },
     };
     judgments_dimensions.push(likert_trial);
   });
 
+// Judgments on attractiveness
+/*
 var scaleAttractiveness = ["0</br>Extremely unattractive", "1", "2", "3", "4", "5</br>Extremely attractive"];
 
   var judgments_attractiveness = [];
@@ -475,6 +477,8 @@ var scaleAttractiveness = ["0</br>Extremely unattractive", "1", "2", "3", "4", "
     };
     judgments_attractiveness.push(likert_trial);
   });
+
+*/
 
   /* AGE */
   var age = {
@@ -606,8 +610,8 @@ var scaleAttractiveness = ["0</br>Extremely unattractive", "1", "2", "3", "4", "
   timeline.push(Instr_gene2);
   timeline.push(jugmentInst_stim);
   timeline.push(judgments_dimensions);
-  timeline.push(attractiveness_instr);
-  timeline.push(judgments_attractiveness);
+  //timeline.push(attractiveness_instr);
+  //timeline.push(judgments_attractiveness);
   timeline.push(age);
   timeline.push(gender);
   timeline.push(language);
