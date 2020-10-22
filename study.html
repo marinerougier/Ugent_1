@@ -52,9 +52,7 @@ DESCRIPTION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   /* Initial variables */
   var timeline = [];
   var preloadimages = [];
-  var prolificID = jsPsych.data.getURLVariable("prolificID"); // Need to add ?prolificID={{%PROLIFIC_PID%}} at the end of the prolific survey link!
-
-  // Preview stimuli
+  var prolificID = jsPsych.data.getURLVariable("PROLIFIC_PID");
 
   // female stimuli
   var Stim_highAtt_fem = [
@@ -124,27 +122,7 @@ DESCRIPTION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     delay_after: 200,
   };
 
-  /* CONSENT */
-  var consent_old = {
-    type: 'html-button-response',
-    stimulus: function() {
-        html = "";
-        html += "<h1>Informed consent</h1>";
-        html += "<p class='justify'>This study should take approximately <strong>XXX minutes</strong>. During this time, ";
-        html += "it is important that you remain fully <strong>focused</strong>.</p>";
-        html += "<p class='justify'>Your participation is voluntary, does not imply any risk, and your answers will ";
-        html += "be anonymous. You are free to withdraw from the study at any moment. After full completion, ";
-        html += "you will receive a monetary compensation as stated on Prolific. If you start this study, it "
-        html += "means that <b>you give you free and informed consent</b> to participate.</p>";
-        html += "<p class='justify'>This study is administered by Marine Rougier, researcher at Gent University (Belgium). ";
-        html += "If you have any question or comment, please contact me at: <strong>marine.rougier@ugent.be</strong></p>"; 
-        return html;
-    },
-    choices: ["I give my informed consent"],
-  };
-
-//var list = function(elem) {(document.querySelectorAll("#info, #volunt, #anony, #end, #consqc, #summ")};
-
+// Consent
 var check_consent = function(elem) {
   if (document.getElementById('info').checked 
     & document.getElementById('volunt').checked 
@@ -163,7 +141,6 @@ var check_consent = function(elem) {
 };
 
 
-  // declare the block.
 var consent = {
   type:'external-html',
   url: "https://marinerougier.github.io/Ugent_1/external_page_consent.html",
@@ -617,9 +594,9 @@ var scaleAttractiveness = ["0</br>Extremely unattractive", "1", "2", "3", "4", "
   debrief += "to withdraw consent and have your data excluded, do not hesitate to contact us via Prolific Academic. If you are "; 
   debrief += "interested, you can also ask for the results of this experiment—be aware, however, that this could take several weeks "; 
   debrief += "to gather all the data we need and to analyze them. <br><br>";
-  debrief += "You can copy this code on Prolific: <b>XXX</b> ";
+  debrief += "You can copy this code on Prolific: <b>3AAB620D</b> ";
   debrief += "or you can click on the following link to validate your participation:</p>";
-  debrief += "<a href='https://app.prolific.ac/submissions/complete?cc=XXX' target='_blank'>click here</a>";
+  debrief += "<a href='https://app.prolific.co/submissions/complete?cc=3AAB620D' target='_blank'>click here</a>";
 
 
   // TIMELINE ----------------------------------------------------------------------------------------------------------
