@@ -979,7 +979,7 @@ window.jsPsych = (function() {
     }
 
 
-    // MINIMUM SIZE
+    // MAXIMUM SIZE
     if(typeof exclusions.max_width !== 'undefined' || typeof exclusions.max_height !== 'undefined'){
       var maxw = typeof exclusions.max_width !== 'undefined' ? exclusions.max_width : 0;
       var maxh = typeof exclusions.max_height !== 'undefined' ? exclusions.max_height : 0;
@@ -990,7 +990,7 @@ window.jsPsych = (function() {
         var interval_max = setInterval(function(){
           var w_max = window.innerWidth;
           var h_max = window.innerHeight;
-          if(w_max < maxw || h_max < maxh){
+          if(w_max > maxw || h_max > maxh){
             var msg_max = '<p>Your browser window is too large to complete this experiment. '+
               'Please minimize the size of your browser window. If your browser window is already minimized, '+
               'you will not be able to complete this experiment.</p>'+
