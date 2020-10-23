@@ -474,7 +474,8 @@ var scaleAttractiveness = ["-3</br>Extremely unattractive", "-2", "-1", "0", "1"
         on_finish: function(data) {
           var parsed_response  = JSON.parse(data.responses);
           data.attractiveness    = parsed_response.Q0 * 10;
-          data.faceattract              = ciImg.imgHtml;
+          data.facejudged    = ciImg.imgHtml;
+          //data.faceattract              = ciImg.imgHtml;
         },
     };
     judgments_attractiveness.push(likert_trial);
