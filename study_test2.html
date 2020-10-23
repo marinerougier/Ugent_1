@@ -38,13 +38,15 @@ DESCRIPTION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     z-index: 2;
   }
   .jspsych-content-wrapper {
-    width: 900px; 
+    width: 70%; 
     height: 10000px;
   }
 </style>
 </head>
 <body></body>
 <script>
+
+  //width: 900px; 
   /* Parameters */
   var n = 2; // number of CIs randomly sampled for each cell : has to be 25 !!!
   var githubCIs = 'Stim_selected/'; // github CIs path
@@ -627,7 +629,7 @@ var scaleAttractiveness = ["-3</br>Extremely unattractive", "-2", "-1", "0", "1"
     exclusions: {
       min_width: 800,
       min_height: 600,
-      max_width:1600,
+      max_width: 1600,
       max_height: 900,
     },
     on_finish: function(data) { 
