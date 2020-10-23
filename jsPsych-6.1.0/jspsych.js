@@ -974,7 +974,7 @@ window.jsPsych = (function() {
             checkExclusions(exclusions, success, fail);
           }
         }, 100);
-        //return; // prevents checking other exclusions while this is being fixed
+        return; // prevents checking other exclusions while this is being fixed
       }
     }
 
@@ -1003,7 +1003,7 @@ window.jsPsych = (function() {
             checkExclusions(exclusions, success, fail);
           }
         }, 100);
-        //return; // prevents checking other exclusions while this is being fixed
+        return; // prevents checking other exclusions while this is being fixed
       }
     }
 
