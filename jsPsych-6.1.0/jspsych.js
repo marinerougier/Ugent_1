@@ -981,7 +981,7 @@ window.jsPsych = (function() {
 
     // MINIMUM SIZE
     if(typeof exclusions.max_width !== 'undefined' || typeof exclusions.max_height !== 'undefined'){
-      var maww = typeof exclusions.max_width !== 'undefined' ? exclusions.max_width : 0;
+      var maxw = typeof exclusions.max_width !== 'undefined' ? exclusions.max_width : 0;
       var maxh = typeof exclusions.max_height !== 'undefined' ? exclusions.max_height : 0;
       var w_max = window.innerWidth;
       var h_max = window.innerHeight;
