@@ -31,7 +31,6 @@ DESCRIPTION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   .imgJudge {
   	position: fixed;
     width: 70%;
-    height: 70%;
     margin: 0px;
     padding: 0px;
     top: 0px;
@@ -40,16 +39,14 @@ DESCRIPTION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   }
   .jspsych-content-wrapper {
     width: 70%; 
-    height: 700%;
+    height: 10000px;
   }
 </style>
 </head>
 <body></body>
 <script>
 
-  //height: 266px;
-  //height: 70%;
-
+  //width: 900px; 
   /* Parameters */
   var n = 2; // number of CIs randomly sampled for each cell : has to be 25 !!!
   var githubCIs = 'Stim_selected/'; // github CIs path
@@ -387,7 +384,7 @@ var consent = {
         on_load: function() {
           window.scrollTo(0, 0);
           $(".jspsych-content").css("max-width", "100%");
-          $(".jspsych-content").css("margin-top", "380px");
+          $(".jspsych-content").css("margin-top", "430px");
           $(".jspsych-survey-likert-statement").css("margin", "0px");
           $(".jspsych-survey-likert-statement").css("padding", "0px");
           $(".jspsych-survey-likert-opts").css("padding", "0 0 10px");
@@ -464,7 +461,7 @@ var scaleAttractiveness = ["-3</br>Extremely unattractive", "-2", "-1", "0", "1"
         on_load: function() {
           window.scrollTo(0, 0);
           $(".jspsych-content").css("max-width", "100%");
-          $(".jspsych-content").css("margin-top", "380px");
+          $(".jspsych-content").css("margin-top", "430px");
           $(".jspsych-survey-likert-statement").css("margin", "0px");
           $(".jspsych-survey-likert-statement").css("padding", "0px");
           $(".jspsych-survey-likert-opts").css("padding", "0 0 10px");
@@ -607,7 +604,7 @@ var scaleAttractiveness = ["-3</br>Extremely unattractive", "-2", "-1", "0", "1"
 
 
   // TIMELINE ----------------------------------------------------------------------------------------------------------
-  //timeline.push(consent); 
+  timeline.push(consent);
   timeline.push(activeFullscreen);
   timeline.push(Instr_gene1);
   timeline.push(Instr_gene2);
@@ -630,8 +627,10 @@ var scaleAttractiveness = ["-3</br>Extremely unattractive", "-2", "-1", "0", "1"
     preload_images: preloadimages,
     max_load_time: 500*1000,
     exclusions: {
-      min_width: 800,
+      min_width: 1100,
       min_height: 600,
+      max_width: 1600,
+      max_height: 900,
     },
     on_finish: function(data) { 
       $("#jspsych-content").html("<img src='https://i.gifer.com/4V0b.gif'>");
