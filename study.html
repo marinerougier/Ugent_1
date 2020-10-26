@@ -149,6 +149,24 @@ var consent = {
 };
 
   /* General INSTRUCTIONS */
+
+  var Quit_expe = {
+    type: "html-keyboard-response",
+    post_trial_gap: 300,
+    choices: [32],
+    stimulus: function() {
+      var html = "";
+      html += "<p class='justify'>You can quit the study at any time by closing the browser window. However, please be aware ";
+      html += "that this will <b>end your participation</b>. If you are certain that you want to quit or encounter technical issues ";
+      html += "that force you to quit, <b>you can still receive a partial reward proportionate to the time you actually spent</b> on ";
+      html += "the study. If this occurs, please take the following steps: Return the study via the Prolific study page as ";
+      html += "quickly as possible (please do not submit unless you have completed the study and received a completion code). ";
+      html += "Send a message to the researcher via the Prolific study page, stating that you completed part of the study ";
+      html += "(this will ensure that the researcher knows you should receive a partial reward). </br></br> ";
+      html += "<p></br>Press <span class='light-keys'><kbd>space</kbd></span> to continue</p>";
+      return html;
+    },
+  };
   var Instr_gene1 = {
     type: "html-keyboard-response",
     post_trial_gap: 300,
@@ -604,6 +622,7 @@ var scaleAttractiveness = ["-3</br>Extremely unattractive", "-2", "-1", "0", "1"
 
   // TIMELINE ----------------------------------------------------------------------------------------------------------
   timeline.push(consent);
+  timeline.push(Quit_expe);
   timeline.push(activeFullscreen);
   timeline.push(Instr_gene1);
   timeline.push(Instr_gene2);
